@@ -1,3 +1,6 @@
+"THIS IS JUST AN EXAMPLE FILE OF ME PLAYING AROUND WITH USING FRUITY VICE"
+"IGNORE!"
+
 import requests
 
 def get_fruit_info(fruit_name):
