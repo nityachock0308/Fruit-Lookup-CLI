@@ -8,19 +8,27 @@ def fetch_fruit_data(fruit_name):
 
     try:
         response = requests.get(url)
+        if response.status_code == 404:
+            print(f"Error: Fruit '{fruit_name}' not found. Check spelling and try again.")
+            return None
         response.raise_for_status() # Raises an error for HTTP failures (4xx, 5xx)
         return response.json()
+    except requests.exceptions.ConnectionError:
+        print("Error: Could not connect to FruityVice API. Check your internet connection.")
+        return None
+    except requests.exceptions.RequestException.HTTPError:
+        print("Error: The FruityVice API is currently unavailable. Please try again later.")
+        return None
     except requests.exceptions.RequestException as e:
-        print(f"Error fetching data: {e}")
+        print(f"Unexpected error fetching data: {e}")
         return None
     
-def  display_fruit_info(fruit_name, output_format = "human"):
-    """Fetches and displays fruit data in human-readable or machine-readable format."""
+def get_fruit_info(fruit_name):
+    """Returns fruit details as a dictionary (for programmitc use)."""
     data = fetch_fruit_data(fruit_name)
 
     if not data:
-        print("Error: Could not retrieve data. The fruit may not exist or the API is down")
-        return
+        return None
     
     # Extract relevant fields
     fruit_info = {
@@ -29,19 +37,24 @@ def  display_fruit_info(fruit_name, output_format = "human"):
         "Family": data.get("family", "N/A"),
     }
 
-    # Ensure "nutritions" exists before accessing it
+        # Ensure "nutritions" exists before accessing it
     nutritions = data.get("nutritions", {})
     if nutritions:
         fruit_info.update({
             "Sugar (g)": nutritions.get("sugar", "N/A"),
             "Carbohydrates (g)": nutritions.get("carbohydrates", "N/A"),
-            "Protein (g)": nutritions.get("protein", "N/A"),
-            "Fat (g)": nutritions.get("fat", "N/A")
         })
-    else:
-        print(f"Warning: No 'nutritions' data available for {fruit_name}")
 
-    # Display the output in the chosen format
+        return fruit_info
+    
+def  display_fruit_info(fruit_name, output_format = "human"):
+    """Fetches and displays fruit data in human-readable or JSON format."""
+    fruit_info = get_fruit_info(fruit_name)
+
+    if not fruit_info :
+        print("Error: Could not retrieve data.")
+        return
+    
     if output_format == "human":
         print("\nFruit Information:")
         for key, value in fruit_info.items():
