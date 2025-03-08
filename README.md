@@ -4,18 +4,29 @@ A Python script that interacts with the FruityVice API to fetch and display deta
 
 ## **Features**
 • Fetches fruit details including:
+    
     • Full name
+    
     • ID number
+    
     • Family (biological classification)
+    
     • Sugar content (g)
+    
     • Carbohydrates content (g)
 
+
 • Two output formats:
+    
     • Human-readable
+    
     • JSON (machine-readable)
 
+
 • Handles errors gracefully if a fruit is not found or th API is unavailable.
+
 • Can be used as a command-line tool or imported as a library.
+
 
 ## **Installation**
 
@@ -54,13 +65,20 @@ print(fruit_data)
 ```
 
 ## **Error Handling**
+
 • If a fruit is not found, it will return an error message.
+
 • If the API is unavailable, it will notify the user.
+
 • If an unexpected issue occurs, it will provide a relevant error message.
 
+
 ## **Future Enhancements**
+
 • Add support for listing all available fruits from the API.
+
 • Improve caching to reduce API calls for repeated requests.
+
 
 ## **License**
 This project is open-source under the MIT License.
