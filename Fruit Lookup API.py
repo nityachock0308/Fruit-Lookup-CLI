@@ -16,11 +16,11 @@ def fetch_fruit_data(fruit_name):
     except requests.exceptions.ConnectionError:
         print("Error: Could not connect to FruityVice API. Check your internet connection.")
         return None
-    except requests.exceptions.HTTPError:
+    except requests.exceptions.RequestException.HTTPError:
         print("Error: The FruityVice API is currently unavailable. Please try again later.")
         return None
     except requests.exceptions.RequestException as e:
-        print(f"HTTP Error {response.status_code}: {response.text}")
+        print(f"Unexpected error fetching data: {e}")
         return None
     
 def get_fruit_info(fruit_name):
@@ -45,7 +45,7 @@ def get_fruit_info(fruit_name):
             "Carbohydrates (g)": nutritions.get("carbohydrates", "N/A"),
         })
 
-    return fruit_info
+        return fruit_info
     
 def  display_fruit_info(fruit_name, output_format = "human"):
     """Fetches and displays fruit data in human-readable or JSON format."""
