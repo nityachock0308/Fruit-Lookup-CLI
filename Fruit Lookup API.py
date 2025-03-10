@@ -16,7 +16,7 @@ def fetch_fruit_data(fruit_name):
     except requests.exceptions.ConnectionError:
         print("Error: Could not connect to FruityVice API. Check your internet connection.")
         return None
-    except requests.exceptions.RequestException.HTTPError:
+    except requests.exceptions.HTTPError:
         print("Error: The FruityVice API is currently unavailable. Please try again later.")
         return None
     except requests.exceptions.RequestException as e:
