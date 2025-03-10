@@ -20,7 +20,7 @@ def fetch_fruit_data(fruit_name):
         print("Error: The FruityVice API is currently unavailable. Please try again later.")
         return None
     except requests.exceptions.RequestException as e:
-        print(f"Unexpected error fetching data: {e}")
+        print(f"HTTP Error {response.status_code}: {response.text}")
         return None
     
 def get_fruit_info(fruit_name):
