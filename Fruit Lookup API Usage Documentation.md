@@ -11,25 +11,25 @@ pip install requests
 
 Fetch fruit details from the command line:
 ```python
-python fruit_lookup.py <fruit_name> [--output json]
+python "Fruit Lookup API.py" <fruit_name> [--output json]
 ```
 
 ## **3. Example Commands**
 
 Get details for an apple in human-readable format:
 ```python
-python fruit_lookup.py apple
+ python "Fruit Lookup API.py" apple
 ```
 Get details for a banana in JSON format:
 ```python
-python fruit_lookup.py banana --output json
+python "Fruit Lookup API.py" banana --output json
 ```
 
 ## **4. Using as a Library**
 
 You can also use the script in a Python program:
 ```python
-from fruit_lookup import get_fruit_info
+from Fruit_Lookup_API import get_fruit_info
 
 fruit_data = get_fruit_info("strawberry")
 print(fruit_data)
@@ -40,7 +40,7 @@ print(fruit_data)
 • If the fruit name is incorrect:
 
 Example: ```python
-python fruit_lookup.py bannanna
+python "Fruit Lookup API.py" bannanna
 ```
 
 Output: ```python
