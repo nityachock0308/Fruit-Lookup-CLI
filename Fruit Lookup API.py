@@ -45,7 +45,7 @@ def get_fruit_info(fruit_name):
             "Carbohydrates (g)": nutritions.get("carbohydrates", "N/A"),
         })
 
-        return fruit_info
+    return fruit_info
     
 def  display_fruit_info(fruit_name, output_format = "human"):
     """Fetches and displays fruit data in human-readable or JSON format."""
